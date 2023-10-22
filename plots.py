@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
 
 
-for col in range(1,):
+for col in range(1,2):
 
     # file1 = input("enter the input file:")
 
@@ -37,19 +37,45 @@ for col in range(1,):
 
     # Define columns to plot
     columns_to_plot_file1 = [col for col in file1_data.columns if (col!='AITime')]  # Adjust these columns based on your file1
+    fig, axis = plt.subplots(10,2)
+    j=0
+    i=0
 
-    ax = plt.gca()
-    print(file1_data['v1'] )
+
  
-    g =file1_data.plot(kind='line',
-        x='AITime',
-        y='v1',
-        color='green',
-        label='RTD1',
-           ax=ax)
-    plt.show()
+    # g =file1_data.plot(kind='line',
+    #     x='AITime',
+    #     y='v1',
+    #     color='green',
+    #     label='RTD1',
+    #        ax=ax)
+    # plt.show()
+    for col in columns_to_plot_file1:
+        if i<2:
+            if j<10:
+                x = file1_data['AITime']
+                y = file1_data[col]
+                ax = plt.gca()
+                axis[j,i].plot(x, y, label = "line 1")
+                print(j,i)
+                i=i+1
+            else:
+                j=0
+                i=i+1   
+                # x = file1_data['AITime']
+                # y = file1_data[col]
+                # ax = plt.gca()
+                # axis[i,j].plot(x, y, label = "line 1") 
+                # print(i,j)
+
+                        
+    # plt.show()
+        
     
 
+        # trace = file1_data.plot(x=file1_data['AITime'], y=file1_data[col], mode='lines', name=f'{col}')
+        # print(col)
+        
     # # Create traces for each column in both datasets
     # traces_file1 = []
     # fig = make_subplots(rows=10, cols=2, vertical_spacing=0.1)
